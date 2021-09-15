@@ -5,59 +5,37 @@ import { NotImplementedError } from '../extensions/index.js';
  * 
  */
 export default {
-  str: '',
+  arr: [],
 
   getLength() {
-    return this.str.split('~~').length;
+    return this.arr.length;
   },
   
   addLink(value) {
-    if (!value && 
-      value !== null && 
-      value !== 0 && 
-      value !== false &&
-      !isNaN(value)) {
-      this.str += `( )~~`;
+    if (value === '') {
+      this.arr.push('( )');
+    } else {
+      this.arr.push(`( ${value} )`);
     }
-    this.str += `( ${value} )~~`;
     return this;
   },
 
   removeLink(position) {
-    this.str = this.str.split('~~');
-    if(this.str[this.str.length - 1].length === 0) {
-      this.str.pop();
+    if (position > this.arr.length || position <= 0 || isNaN(position)) {
+      this.arr = [];
+      throw new Error("You can't remove incorrect link!");
     }
-    if(position <= 0 || 
-      typeof position === 'string' || 
-      position > this.str.length) {
-      throw new Error('You can\'t remove incorrect link!')
-    }
-    this.str.splice((position - 1), 1);
-    this.str = this.str.join('~~') + '~~';
+    this.arr = this.arr.slice(0, position - 1).concat(this.arr.slice(position));
     return this;
   },
 
   reverseChain() {
-    this.str = this.str.split('~~');
-    if(this.str[this.str.length - 1].length === 0) {
-      this.str.pop();
-      this.str.reverse();
-    }
-    if(this.str.length === 0) {
-      this.str = this.str.join('');
-    } else {
-      this.str = this.str.join('~~') + '~~';
-    }
+    this.arr.reverse();
     return this;
   },
 
   finishChain() {
-    this.str = this.str.split('~~');
-    if(this.str[this.str.length - 1].length === 0) {
-      this.str.pop();
-    }
-    this.str = this.str.join('~~');
-    return this.str;
+    
+    return this.arr.join('~~');
   }
 };
