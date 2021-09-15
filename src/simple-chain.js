@@ -35,7 +35,8 @@ export default {
   },
 
   finishChain() {
-    
-    return this.arr.join('~~');
+    let result = this.arr.join('~~');
+    this.arr = []
+    return result;
   }
 };
