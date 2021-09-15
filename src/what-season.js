@@ -17,7 +17,7 @@ export default function getSeason(date) {
     return 'Unable to determine the time of year!'
   }
 
-  if(toString.call(date) !== '[object Date]') {
+  if(date instanceof Date === false) {
     throw new Error("Invalid date!");
   }
 
