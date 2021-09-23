@@ -15,9 +15,11 @@ import { NotImplementedError } from '../extensions/index.js';
 export default class DepthCalculator {
 
   calculateDepth(arr) {
+
     return Array.isArray(arr) ? 
     arr.length === 0 ? 1 : 
     1 + Math.max(...arr.map(item => this.calculateDepth(item))) :
     0;
+    
   }
 }

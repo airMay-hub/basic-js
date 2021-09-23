@@ -17,7 +17,11 @@ export default function getSeason(date) {
     return 'Unable to determine the time of year!'
   }
 
-  if(date instanceof Date === false) {
+  if(date instanceof Date === false ) {
+    throw new Error("Invalid date!");
+  }
+
+  if(Object.getOwnPropertySymbols(date).length > 0) {
     throw new Error("Invalid date!");
   }
 
