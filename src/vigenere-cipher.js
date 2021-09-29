@@ -20,12 +20,87 @@ import { NotImplementedError } from '../extensions/index.js';
  * 
  */
 export default class VigenereCipheringMachine {
-  encrypt() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+
+  
+  constructor(mode = true) {
+    this.mode = mode;
   }
-  decrypt() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+
+  encrypt(str, clue) {
+
+    if(str === undefined || clue === undefined) {
+      throw new Error('Incorrect arguments!');
+    }
+
+    str = str.toUpperCase().split('');
+
+    let kf = Math.ceil(str.length / clue.length);
+    clue = clue.toUpperCase().repeat(kf).split('');
+
+
+    for(let i = 0; i < str.length; i++) {
+      if(str[i].match(/[^A-Z]/g)) {
+        clue.splice(i, 0, str[i]);
+      }
+    }
+
+    clue = clue.join('');
+
+    let codeA = 'A'.charCodeAt();
+    let abcCount = 26;
+
+    let result = '';
+
+    for (let i = 0; i < str.length; i++) {
+      if (str[i].match(/[^A-Z]/g)) {
+        result += str[i];
+      } else {
+          let letterInx = str[i].charCodeAt() - codeA;
+          let shift = clue[i].charCodeAt() - codeA;
+          let letter = String.fromCharCode(codeA + (letterInx + shift) % abcCount)
+          result += letter;
+        }
+    }
+
+      return this.mode === false ? result.split("").reverse().join("") : result;
+  }
+
+  decrypt(str, clue) {
+
+    if(str === undefined || clue === undefined) {
+      throw new Error('Incorrect arguments!');
+    }
+
+    str = str.toUpperCase().split('');
+
+    let kf = Math.ceil(str.length / clue.length);
+    clue = clue.toUpperCase().repeat(kf).split('');
+
+
+    for(let i = 0; i < str.length; i++) {
+      if(str[i].match(/[^A-Z]/g)) {
+        clue.splice(i, 0, str[i]);
+      }
+    }
+
+    clue = clue.join('');
+
+    let codeA = 'A'.charCodeAt();
+    let abcCount = 26;
+
+    let result = '';
+
+    for (let i = 0; i < str.length; i++) {
+      if (str[i].match(/[^A-Z]/g)) {
+        result += str[i];
+      } else {
+          let letterInx = str[i].charCodeAt() - codeA;
+          let shift = clue[i].charCodeAt() - codeA;
+          let letter = String.fromCharCode(codeA + (letterInx - shift + abcCount) % abcCount)
+          result += letter;
+        }
+    }
+
+      return this.mode === false ? result.split("").reverse().join("") : result;
   }
 }

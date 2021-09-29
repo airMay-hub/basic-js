@@ -21,7 +21,7 @@ export default function dateSample(sampleActivity) {
   if (typeof(sampleActivity) === 'string' &&
       +sampleActivity == sampleActivity &&
       +sampleActivity > 0 &&
-      +sampleActivity < 15) {
+      +sampleActivity < MODERN_ACTIVITY) {
       const time = Math.ceil((Math.log(MODERN_ACTIVITY / sampleActivity) * HALF_LIFE_PERIOD) / 0.693);
       return time;
   } else {
