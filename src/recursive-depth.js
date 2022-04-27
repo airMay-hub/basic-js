@@ -1,4 +1,4 @@
-import { NotImplementedError } from '../extensions/index.js';
+const { NotImplementedError } = require('../extensions/index.js');
 
 /**
  * Implement class DepthCalculator with method calculateDepth
@@ -12,6 +12,7 @@ import { NotImplementedError } from '../extensions/index.js';
  * depthCalc.calculateDepth([[[]]]) => 3
  *
  */
+<<<<<<< HEAD
 export default class DepthCalculator {
 
   calculateDepth(arr) {
@@ -23,3 +24,15 @@ export default class DepthCalculator {
     
   }
 }
+=======
+class DepthCalculator {
+  calculateDepth(/* arr */) {
+    throw new NotImplementedError('Not implemented');
+    // remove line with error and write your code here
+  }
+}
+
+module.exports = {
+  DepthCalculator
+};
+>>>>>>> 35961c4664a5f9ed985ef60ff6b2afabe9e9afc6

@@ -1,4 +1,4 @@
-import { NotImplementedError } from '../extensions/index.js';
+const { NotImplementedError } = require('../extensions/index.js');
 
 /**
  * Extract season from given date and expose the enemy scout!
@@ -11,6 +11,7 @@ import { NotImplementedError } from '../extensions/index.js';
  * getSeason(new Date(2020, 02, 31)) => 'spring'
  * 
  */
+<<<<<<< HEAD
 export default function getSeason(date) {
   
   if (!date) {
@@ -36,4 +37,13 @@ export default function getSeason(date) {
   } else if (month >= 8 && month <= 10) {
       return 'autumn';
   }
+=======
+function getSeason(/* date */) {
+  throw new NotImplementedError('Not implemented');
+  // remove line with error and write your code here
+>>>>>>> 35961c4664a5f9ed985ef60ff6b2afabe9e9afc6
 }
+
+module.exports = {
+  getSeason
+};

@@ -1,4 +1,4 @@
-import { NotImplementedError } from '../extensions/index.js';
+const { NotImplementedError } = require('../extensions/index.js');
 
 /**
  * Create name of dream team based on the names of its members
@@ -13,6 +13,7 @@ import { NotImplementedError } from '../extensions/index.js';
  * createDreamTeam(['Olivia', 1111, 'Lily', 'Oscar', true, null]) => 'LOO'
  *
  */
+<<<<<<< HEAD
 export default function createDreamTeam(members) {
 
   if (Array.isArray(members)) {
@@ -29,4 +30,13 @@ export default function createDreamTeam(members) {
   } else {
     return false
   }
+=======
+function createDreamTeam(/* members */) {
+  throw new NotImplementedError('Not implemented');
+  // remove line with error and write your code here
+>>>>>>> 35961c4664a5f9ed985ef60ff6b2afabe9e9afc6
 }
+
+module.exports = {
+  createDreamTeam
+};
